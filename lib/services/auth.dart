@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:todo_bloc/model/user.dart';
 
-class Auth {
+class AuthService {
   late Box<User> _users;
 
   Future init() async {
