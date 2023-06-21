@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Todo Bloc Example"),
+          title: Text("Todo Bloc Example 2"),
         ),
         body: Container(),
       ),
