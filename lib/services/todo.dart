@@ -10,7 +10,8 @@ class TodoService {
   }
 
   Future<List<Task>> getTasks(final String user) async {
-    final tasks = _tasks.values.where((element) => element.user == user).toList();
+    final tasks =
+        _tasks.values.where((element) => element.user == user).toList();
     return tasks;
   }
 
@@ -19,7 +20,16 @@ class TodoService {
   }
 
   Future<void> removeTask(final String task, final String user) async {
-    final taskToRemove = _tasks.values.firstWhere((element) => element.task == task && element.user == user);
+    final taskToRemove = _tasks.values
+        .firstWhere((element) => element.task == task && element.user == user);
     await _tasks.delete(taskToRemove);
+  }
+
+  Future<void> updateTask(final String task, final String user,
+      {final bool? done}) async {
+    final taskToEdit = _tasks.values
+        .firstWhere((element) => element.task == task && element.user == user);
+    final index = taskToEdit.key as int;
+    await _tasks.put(index, Task(user, task, done ?? taskToEdit.completed));
   }
 }
