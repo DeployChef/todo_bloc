@@ -14,11 +14,11 @@ class TodoService {
     return tasks;
   }
 
-  Future addTask(final String task, final String user) async {
+  Future<void> addTask(final String task, final String user) async {
     await _tasks.add(Task(user, task, false));
   }
 
-  Future removeTask(final String task, final String user) async {
+  Future<void> removeTask(final String task, final String user) async {
     final taskToRemove = _tasks.values.firstWhere((element) => element.task == task && element.user == user);
     await _tasks.delete(taskToRemove);
   }

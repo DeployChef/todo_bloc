@@ -4,7 +4,7 @@ import 'package:todo_bloc/model/user.dart';
 class AuthService {
   late Box<User> _users;
 
-  Future init() async {
+  Future<void> init() async {
     Hive.registerAdapter(UserAdapter());
     _users = await Hive.openBox<User>("usersBox");
   }
