@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_bloc/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Todo Bloc Example 2"),
-        ),
-        body: Container(),
-      ),
+      home: LoginPage(),
     );
   }
 }

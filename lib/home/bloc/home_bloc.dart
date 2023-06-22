@@ -6,8 +6,8 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
-    on<LoginEvent>((event, emmiter) => {
-
+    on<LoginEvent>((event, emmiter) {
+      print(event);
     });
   }
 }
