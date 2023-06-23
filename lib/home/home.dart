@@ -31,6 +31,17 @@ class HomePage extends StatelessWidget {
                 ),
               );
             }
+            if (state is HomeInitial) {
+              if (state.error != null) {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text("Error"),
+                    content: Text(state.error!),
+                  ),
+                );
+              }
+            }
           },
           builder: (context, state) {
             if (state is HomeInitial) {
@@ -51,9 +62,21 @@ class HomePage extends StatelessWidget {
                         labelText: "Password",
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () => BlocProvider.of<HomeBloc>(context).add(LoginEvent(usernameField.text, passwordField.text)),
-                      child: Text("Login"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () => BlocProvider.of<HomeBloc>(context).add(LoginEvent(usernameField.text, passwordField.text)),
+                          child: Text("Login"),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () => BlocProvider.of<HomeBloc>(context).add(RegisterEvent(usernameField.text, passwordField.text)),
+                          child: Text("Register"),
+                        ),
+                      ],
                     ),
                   ],
                 ),

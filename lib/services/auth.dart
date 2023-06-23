@@ -15,4 +15,21 @@ class AuthService {
     final success = _users.values.any((element) => element.username == username && element.password == password);
     return success ? username : null;
   }
+
+  Future<UserCreationResult> createUser(final String username, final String password) async {
+    final exist = await _users.values.any((element) => element.username.toLowerCase() == username.toLowerCase());
+
+    if (exist) {
+      return UserCreationResult.exist;
+    }
+
+    try {
+      await _users.add(User(username, password));
+      return UserCreationResult.success;
+    } catch (ex) {
+      return UserCreationResult.failure;
+    }
+  }
 }
+
+enum UserCreationResult { success, failure, exist }

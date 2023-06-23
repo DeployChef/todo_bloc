@@ -19,6 +19,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
 
+    on<RegisterEvent>((event, emit) async {
+      final result = await _auth.createUser(event.username, event.password);
+      switch (result) {
+        case UserCreationResult.success:
+          emit(SuccessfullLoginState(event.username));
+          emit(HomeInitial());
+          break;
+        case UserCreationResult.failure:
+          emit(HomeInitial(error: "Error"));
+          break;
+        case UserCreationResult.exist:
+          emit(HomeInitial(error: "Exist"));
+          break;
+      }
+    });
+
     on<RegisterServiceEvent>((event, emit) async {
       await _auth.init();
       await _todo.init();
