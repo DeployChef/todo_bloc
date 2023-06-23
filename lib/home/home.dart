@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc/home/bloc/home_bloc.dart';
+import 'package:todo_bloc/services/auth.dart';
 
 class LoginPage extends StatelessWidget {
   final usernameField = TextEditingController();
@@ -15,7 +16,7 @@ class LoginPage extends StatelessWidget {
         title: Text("Login todo"),
       ),
       body: BlocProvider(
-        create: (context) => HomeBloc(),
+        create: (context) => HomeBloc(RepositoryProvider.of<AuthService>(context)),
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeInitial) {
