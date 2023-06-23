@@ -12,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<LoginEvent>((event, emmiter) async {
       final user = await _auth.authUser(event.username, event.password);
       if (user != null) {
-        emit(SuccessfullLoginState(user));
+        emmiter(SuccessfullLoginState(user));
       }
     });
   }
