@@ -10,14 +10,14 @@ class TodoService {
 
     await _tasks.clear();
 
-    _tasks.add(Task("test", "test", false));
-    _tasks.add(Task("test", "test1", true));
-    _tasks.add(Task("test", "test2", false));
-    _tasks.add(Task("test", "test3", true));
-    _tasks.add(Task("test", "test4", true));
-    _tasks.add(Task("test", "test5", false));
-    _tasks.add(Task("test", "test6", false));
-    _tasks.add(Task("test", "test7", true));
+    await _tasks.add(Task("test", "test", false));
+    await _tasks.add(Task("test", "test1", true));
+    await _tasks.add(Task("test", "test2", false));
+    await _tasks.add(Task("test", "test3", true));
+    await _tasks.add(Task("test", "test4", true));
+    await _tasks.add(Task("test", "test5", false));
+    await _tasks.add(Task("test", "test6", false));
+    await _tasks.add(Task("test", "test7", true));
   }
 
   Future<List<Task>> getTasks(final String user) async {
