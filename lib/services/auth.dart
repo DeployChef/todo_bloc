@@ -7,11 +7,12 @@ class AuthService {
   Future<void> init() async {
     Hive.registerAdapter(UserAdapter());
     _users = await Hive.openBox<User>("usersBox");
+
+    _users.add(User("test", "test"));
   }
 
   Future<String?> authUser(final String username, final String password) async {
-    final success = _users.values.any((element) =>
-        element.username == username && element.password == password);
+    final success = _users.values.any((element) => element.username == username && element.password == password);
     return success ? username : null;
   }
 }

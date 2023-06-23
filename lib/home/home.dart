@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc/home/bloc/home_bloc.dart';
 import 'package:todo_bloc/services/auth.dart';
 
-class LoginPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final usernameField = TextEditingController();
   final passwordField = TextEditingController();
 
-  LoginPage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

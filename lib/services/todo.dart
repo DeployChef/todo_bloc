@@ -7,11 +7,21 @@ class TodoService {
   Future<void> init() async {
     Hive.registerAdapter(TaskAdapter());
     _tasks = await Hive.openBox<Task>("tasksBox");
+
+    await _tasks.clear();
+
+    _tasks.add(Task("test", "test", false));
+    _tasks.add(Task("test", "test1", true));
+    _tasks.add(Task("test", "test2", false));
+    _tasks.add(Task("test", "test3", true));
+    _tasks.add(Task("test", "test4", true));
+    _tasks.add(Task("test", "test5", false));
+    _tasks.add(Task("test", "test6", false));
+    _tasks.add(Task("test", "test7", true));
   }
 
   Future<List<Task>> getTasks(final String user) async {
-    final tasks =
-        _tasks.values.where((element) => element.user == user).toList();
+    final tasks = _tasks.values.where((element) => element.user == user).toList();
     return tasks;
   }
 
@@ -20,15 +30,12 @@ class TodoService {
   }
 
   Future<void> removeTask(final String task, final String user) async {
-    final taskToRemove = _tasks.values
-        .firstWhere((element) => element.task == task && element.user == user);
+    final taskToRemove = _tasks.values.firstWhere((element) => element.task == task && element.user == user);
     await _tasks.delete(taskToRemove);
   }
 
-  Future<void> updateTask(final String task, final String user,
-      {final bool? done}) async {
-    final taskToEdit = _tasks.values
-        .firstWhere((element) => element.task == task && element.user == user);
+  Future<void> updateTask(final String task, final String user, {final bool? done}) async {
+    final taskToEdit = _tasks.values.firstWhere((element) => element.task == task && element.user == user);
     final index = taskToEdit.key as int;
     await _tasks.put(index, Task(user, task, done ?? taskToEdit.completed));
   }
